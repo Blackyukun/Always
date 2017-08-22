@@ -7,7 +7,7 @@ from config import config
 
 db = SQLAlchemy()
 lm = LoginManager()
-lm.login_view = 'login'
+lm.login_view = 'auth.login'
 mail = Mail()
 
 

@@ -201,9 +201,7 @@ img{
   border-top: 4ps solid transparent;
   border-bottom: 4px solid transparent;
 }*/
-.novel-tags{
-  background:
-}
+
 .novel-tags a{
   display: inline;
   text-decoration: none;
@@ -306,6 +304,61 @@ img{
 }
 .sider-content{
   padding: 10px;
+}
+
+/*侧边栏用户面板*/
+.user-avatar{
+  width: 128px;
+  padding: 0 61px;
+}
+.user-avatar img{
+  margin-top: 10px;
+  max-width: 128px;
+  max-height: 128px;
+  border-radius: 50%;
+}
+.user-name{
+  font-size: 16px;
+  text-align: center;
+  font-weight: bold;
+  padding: 8px 0;
+}
+.user-pannel ul{
+  height: 42px !important;
+  overflow: hidden !important;
+  margin: 10px 0 0 0 !important;
+  padding: 0 !important;
+  list-style: none !important;
+  font-size: 18px !important;
+  display: block !important;
+  clear: both !important;
+}
+.sider-content ul li {
+  color: #999;
+  width: 250px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 10px;
+  list-style: none !important;
+  line-height: 1.2em;
+}
+.user-pannel li {
+  display: inline !important;
+  float: left;
+  width: 82px !important;
+  text-align: center;
+  border-right: 1px solid #d9d9d9;
+  margin: 0 !important;
+  padding: 0 !important;
+  clear: none !important;
+}
+.user-pannel li.last {
+  border: none;
+}
+.user-pannel li span {
+  font-size: 12px !important;
+  color: #808080;
 }
 
 /*chapter*/

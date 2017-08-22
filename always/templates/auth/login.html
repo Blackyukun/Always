@@ -13,7 +13,7 @@
           <td width="180" align="right">昵称</td>
           <td width="auto" align="left">
             {{form.nickname(id="nickname",class="input1 nknameInput")}}
-              {% for error in form.email.errors %}
+              {% for error in form.nickname.errors %}
                 <span style="color: red;">[{{error}}]</span>
               {% endfor %}
             <!--<input type="text" name="nickname" id="nickname" class="input1 nknameInput">-->
@@ -22,7 +22,7 @@
         <tr>
           <td width="180" align="right">密码</td>
           <td width="auto" align="left">
-            {{form.password(class="input1"}}
+            {{form.password(class="input1")}}
               {% for error in form.password.errors %}
                 <span style="color: red;">[{{error}}]</span>
               {% endfor %}
@@ -35,15 +35,15 @@
             {{form.remember_me}}
           </td>
         </tr>
-        <tr>
-          <td width="180" align="right">验证码</td>
-          <td width="auto" align="left">
-            <label>
-              <input type="text" name="password" class="input1" placeholder="验证码">
-            </label>
-            <img src="#" id="verification-img" align="middle" alt="验证码">
-          </td>
-        </tr>
+        <!--<tr>-->
+          <!--<td width="180" align="right">验证码</td>-->
+          <!--<td width="auto" align="left">-->
+            <!--<label>-->
+              <!--<input type="text" name="password" class="input1" placeholder="验证码">-->
+            <!--</label>-->
+            <!--<img src="#" id="verification-img" align="middle" alt="验证码">-->
+          <!--</td>-->
+        <!--</tr>-->
         <tr>
           <td width="180" align="right"></td>
           <td width="auto" align="left">

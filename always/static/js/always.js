@@ -44,7 +44,7 @@ $(function() {
     }
   });
   // 搜索框
-  $('#menu .menu-list .list:first-child').click(function() {
+  $('#menu .menu-list .list li:first-child').click(function() {
     $('#mob-search').css('display', 'block');
   });
   $('#mob-search #cancel').click(function() {

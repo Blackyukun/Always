@@ -10,10 +10,20 @@
     <table cellpadding="5" cellspacing="8" border="0" width="100%" class="tlg">
       <tbody>
         <tr>
+          <td width="180" align="right">邮箱</td>
+          <td width="auto" align="left">
+            {{form.email(id="nickname",class="input1 nknameInput")}}
+              {% for error in form.email.errors %}
+                <span style="color: red;">[{{error}}]</span>
+              {% endfor %}
+            <!--<input type="text" name="nickname" id="nickname" class="input1 nknameInput">-->
+          </td>
+        </tr>
+        <tr>
           <td width="180" align="right">昵称</td>
           <td width="auto" align="left">
             {{form.nickname(id="nickname",class="input1 nknameInput")}}
-              {% for error in form.email.errors %}
+              {% for error in form.nickname.errors %}
                 <span style="color: red;">[{{error}}]</span>
               {% endfor %}
             <!--<input type="text" name="nickname" id="nickname" class="input1 nknameInput">-->
@@ -22,7 +32,7 @@
         <tr>
           <td width="180" align="right">密码</td>
           <td width="auto" align="left">
-            {{form.password(class="input1"}}
+            {{form.password(class="input1")}}
               {% for error in form.password.errors %}
                 <span style="color: red;">[{{error}}]</span>
               {% endfor %}
@@ -30,26 +40,30 @@
           </td>
         </tr>
         <tr>
-          <td width="180" align="right">记住我</td>
+          <td width="180" align="right">确认密码</td>
           <td width="auto" align="left">
-            {{form.remember_me}}
+            {{form.password2(class="input1")}}
+              {% for error in form.password2.errors %}
+                <span style="color: red;">[{{error}}]</span>
+              {% endfor %}
+            <!--<input type="password" name="password" class="input1">-->
           </td>
         </tr>
-        <tr>
-          <td width="180" align="right">验证码</td>
-          <td width="auto" align="left">
-            <label>
-              <input type="text" name="password" class="input1" placeholder="验证码">
-            </label>
-            <img src="#" id="verification-img" align="middle" alt="验证码">
-          </td>
-        </tr>
+        <!--<tr>-->
+          <!--<td width="180" align="right">验证码</td>-->
+          <!--<td width="auto" align="left">-->
+            <!--<label>-->
+              <!--<input type="text" name="password" class="input1" placeholder="验证码">-->
+            <!--</label>-->
+            <!--<img src="#" id="verification-img" align="middle" alt="验证码">-->
+          <!--</td>-->
+        <!--</tr>-->
         <tr>
           <td width="180" align="right"></td>
           <td width="auto" align="left">
-            <input type="submit" name="submit" class="lgbtn" value="登录">
+            <input type="submit" name="submit" class="lgbtn" value="注册">
             &nbsp;&nbsp;&nbsp;&nbsp;
-            <a href="#">现在注册</a>
+            <a href="#">前往登录</a>
             &nbsp;&nbsp;&nbsp;&nbsp;
             <a href="#">忘记密码</a>
           </td>
