@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      {% block head %}
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>{{if title}}{{title}} - Always{{else}}Always{{endif}}</title>
+      <link href="css/bootstrap.min.css" rel="stylesheet">
+      <link href="css/mystyles.css" rel="stylesheet">
+      <link media="(max-width: 960px)" href="css/mobile.css" rel="stylesheet">
+      {% endblock %}
+    </head>
+  <body>
+    <div id="header">
+    	<div class="nav-bar">
+    		<div class="logo">
+          <a href="#">
+            <img src="Y.png" width="45px" height="45px" alt="logo">
+          </a>
+        </div>
+        <div class="buttons">
+          <a href="#" class="recom">推荐</a>
+          <div class="searchbox">
+            <input type="text" id="searchInput" placeholder="Search" autocomplete="off">
+            <button><span class="glyphicon glyphicon-search"></span></button>
+          </div>
+          <a href="#" class>关于</a>
+          <a href="#" class>登录</a>
+          <a href="#" class>消息</a>
+          <a href="#" class="current">首页</a>
+        </div>
+    	</div>
+      <!-- 移动端导航 -->
+      <div class="mob-nav">
+        <a href="#"><h1 class="nav-title">Always</h1></a>
+        <a class="menu-btn"><i class="glyphicon glyphicon-th-list"></i></a>
+        <nav id="menu">
+          <div class="menu-list">
+            <ul class="list">
+              <li class><a href="#"><i class="glyphicon glyphicon-search"></i> &nbsp;&nbsp;&nbsp;搜索</a></li>
+              <li class><a href="#"><i class="glyphicon glyphicon-fire"></i> &nbsp;&nbsp;&nbsp;推荐</a></li>
+              <li class><a href="#"><i class="glyphicon glyphicon-home"></i> &nbsp;&nbsp;&nbsp;首页</a></li>
+              <li class><a href="#"><i class="glyphicon glyphicon-comment"></i> &nbsp;&nbsp;&nbsp;消息</a></li>
+              <li class><a href="#"><i class="glyphicon glyphicon-log-in"></i> &nbsp;&nbsp;&nbsp;登录</a></li>
+              <li class><a href="#"><i class="glyphicon glyphicon-asterisk"></i> &nbsp;&nbsp;&nbsp;关于</a></li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </div>
+    <!-- 移动端搜索框 -->
+    <div id="mob-search">
+      <header>Search</header>
+      <div>
+        <input type="text" id="search-mobinput">
+      </div>
+      <footer>
+        <a href="#" class="button" id="cancel"> 取 消 </a>
+        <a href="#" class="button" id="action">确定</a>
+        <div style="clear:both"></div>
+      </footer>
+    </div>
+    <div id="content">
+      <!-- 主栏 -->
+      <div class="main-content">
+        <div class="banns">
+          <div class="banns-title">
+            网站公告
+          </div>
+          <div class="banns-content">
+            <article>啊这儿是本网站的公告栏，这里需要有一些东西啊啊啊啊啊啊。啊这儿是本网站的公告栏，这里需要有一些东西啊啊啊啊啊啊。啊这儿是本网站的公告栏，这里需要有一些东西啊啊啊啊啊啊。啊这儿是本网站的公告栏，这里需要有一些东西啊啊啊啊啊啊。啊</article>
+          </div>
+        </div>
+        {% block content %}
+        <div class="post-box">
+          <div class="post-list">
+            <div class="avatar">
+              <a href="#">
+                <img src="me.png" alt="ava">
+              </a>
+            </div>
+            <div class="novel-content">
+              <h2>
+                <a href="#">业道</a>
+              </h2>
+              <!-- <span class="novel-tags"><a href="#">都市</a></span> -->
+              <span class="novel-outline">
+                讲述两个屌丝青年的荔枝故事。讲述两个屌丝青年的荔枝故事。讲述两个屌丝青年的荔枝故事。讲述两个屌丝青年的荔枝故事。讲述两个屌丝青年的荔枝故事。...
+              </span>
+            </div>
+            <div class="novel-count">
+              <a href="#">5</a>
+            </div>
+
+            <div class="clear"></div>
+          </div>
+          <div class="novel-data">
+            <span class="archive">
+              <i class="glyphicon glyphicon-th-large"></i> <a href="#">长篇</a>
+            </span>
+            <span class="time">
+              <i class="glyphicon glyphicon-time"></i> 2017-08-20
+            </span>
+            <span class="tags">
+              <i class="glyphicon glyphicon-tags"></i> <a href="#">都市</a>、<a href="#">励志</a>
+            </span>
+
+            <span class="like">
+              <i class="glyphicon glyphicon-thumbs-up"></i> <a href="#">2.2k like</a>
+            </span>
+
+          </div>
+        </div>
+
+
+        <div class="post-box">
+          <div class="post-list">
+            <div class="avatar">
+              <a href="#">
+                <img src="me.png" alt="ava">
+              </a>
+            </div>
+            <div class="novel-content">
+
+              <h2><a href="#">业道</a></h2>
+              <!-- <span class="novel-tags"><a href="#">都市</a></span> -->
+              <span class="novel-outline">
+                讲述两个屌丝青年的荔枝故事。讲述两个屌丝青年的荔枝故事。讲述两个屌丝青年的荔枝故事。讲述两个屌丝青年的荔枝故事。讲述两个屌丝青年的荔枝故事。...
+              </span>
+            </div>
+            <div class="novel-count">
+              <a href="#">5</a>
+            </div>
+
+            <div class="clear"></div>
+          </div>
+          <div class="novel-data">
+            <span class="archive">
+              <i class="glyphicon glyphicon-th-large"></i> <a href="#">长篇</a>
+            </span>
+            <span class="time">
+              <i class="glyphicon glyphicon-time"></i> 2017-08-20
+            </span>
+            <span class="tags">
+              <i class="glyphicon glyphicon-tags"></i> <a href="#">都市</a>、<a href="#">励志</a>
+            </span>
+            <span class="view">
+              <i class="glyphicon glyphicon-eye-open"></i> 2.2k views
+            </span>
+            <span class="like">
+              <i class="glyphicon glyphicon-thumbs-up"></i> <a href="#">2.2k like</a>
+            </span>
+            <span class="comment">
+              <i class="glyphicon glyphicon-comment"></i> <a href="#">1.0k comments</a>
+            </span>
+          </div>
+        </div>
+
+        <div class="post-box">
+          <div class="post-list">
+            <div class="avatar">
+              <a href="#">
+                <img src="me.png" alt="ava">
+              </a>
+            </div>
+            <div class="novel-content">
+              <h2>
+                <a href="#">业道</a>
+              </h2>
+              <!-- <span class="novel-tags"><a href="#">都市</a></span> -->
+              <span class="novel-outline">
+                讲述两个屌丝青年的荔枝故事。讲述两个屌丝青年的荔枝故事。讲述两个屌丝青年的荔枝故事。讲述两个屌丝青年的荔枝故事。讲述两个屌丝青年的荔枝故事。...
+              </span>
+            </div>
+            <div class="novel-count">
+              <a href="#">5</a>
+            </div>
+
+            <div class="clear"></div>
+          </div>
+          <div class="novel-data">
+            <span class="archive">
+              <i class="glyphicon glyphicon-th-large"></i> <a href="#">长篇</a>
+            </span>
+            <span class="time">
+              <i class="glyphicon glyphicon-time"></i> 2017-08-20
+            </span>
+            <span class="tags">
+              <i class="glyphicon glyphicon-tags"></i> <a href="#">都市</a>、<a href="#">励志</a>
+            </span>
+            <span class="view">
+              <i class="glyphicon glyphicon-eye-open"></i> 2.2k views
+            </span>
+            <span class="like">
+              <i class="glyphicon glyphicon-thumbs-up"></i> <a href="#">2.2k like</a>
+            </span>
+            <span class="comment">
+              <i class="glyphicon glyphicon-comment"></i> <a href="#">1.0k comments</a>
+            </span>
+          </div>
+        </div>
+
+        <div class="post-box">
+          <div class="post-list">
+            <div class="avatar">
+              <a href="#">
+                <img src="me.png" alt="ava">
+              </a>
+            </div>
+            <div class="novel-content">
+              <h2>
+                <a href="#">业道</a>
+              </h2>
+              <!-- <span class="novel-tags"><a href="#">都市</a></span> -->
+              <span class="novel-outline">
+                讲述两个屌丝青年的荔枝故事。讲述两个屌丝青年的荔枝故事。讲述两个屌丝青年的荔枝故事。讲述两个屌丝青年的荔枝故事。讲述两个屌丝青年的荔枝故事。...
+              </span>
+            </div>
+            <div class="novel-count">
+              <a href="#">5</a>
+            </div>
+
+            <div class="clear"></div>
+          </div>
+          <div class="novel-data">
+            <span class="archive">
+              <i class="glyphicon glyphicon-th-large"></i> <a href="#">长篇</a>
+            </span>
+            <span class="time">
+              <i class="glyphicon glyphicon-time"></i> 2017-08-20
+            </span>
+            <span class="tags">
+              <i class="glyphicon glyphicon-tags"></i> <a href="#">都市</a>、<a href="#">励志</a>
+            </span>
+            <span class="view">
+              <i class="glyphicon glyphicon-eye-open"></i> 2.2k views
+            </span>
+            <span class="like">
+              <i class="glyphicon glyphicon-thumbs-up"></i> <a href="#">2.2k like</a>
+            </span>
+            <span class="comment">
+              <i class="glyphicon glyphicon-comment"></i> <a href="#">1.0k comments</a>
+            </span>
+          </div>
+        </div>
+
+        <div class="post-box">
+          <div class="post-list">
+            <div class="avatar">
+              <a href="#">
+                <img src="me.png" alt="ava">
+              </a>
+            </div>
+            <div class="novel-content">
+              <h2>
+                <a href="#">业道</a>
+              </h2>
+              <!-- <span class="novel-tags"><a href="#">都市</a></span> -->
+              <span class="novel-outline">
+                讲述两个屌丝青年的荔枝故事。讲述两个屌丝青年的荔枝故事。讲述两个屌丝青年的荔枝故事。讲述两个屌丝青年的荔枝故事。讲述两个屌丝青年的荔枝故事。...
+              </span>
+            </div>
+            <div class="novel-count">
+              <a href="#">5</a>
+            </div>
+
+            <div class="clear"></div>
+          </div>
+          <div class="novel-data">
+            <span class="archive">
+              <i class="glyphicon glyphicon-th-large"></i> <a href="#">长篇</a>
+            </span>
+            <span class="time">
+              <i class="glyphicon glyphicon-time"></i> 2017-08-20
+            </span>
+            <span class="tags">
+              <i class="glyphicon glyphicon-tags"></i> <a href="#">都市</a>、<a href="#">励志</a>
+            </span>
+            <span class="view">
+              <i class="glyphicon glyphicon-eye-open"></i> 2.2k views
+            </span>
+            <span class="like">
+              <i class="glyphicon glyphicon-thumbs-up"></i> <a href="#">2.2k like</a>
+            </span>
+            <span class="comment">
+              <i class="glyphicon glyphicon-comment"></i> <a href="#">1.0k comments</a>
+            </span>
+          </div>
+        </div>
+
+        <div class="post-box">
+          <div class="post-list">
+            <div class="avatar">
+              <a href="#">
+                <img src="me.png" alt="ava">
+              </a>
+            </div>
+            <div class="novel-content">
+              <h2>
+                <a href="#">业道</a>
+              </h2>
+              <!-- <span class="novel-tags"><a href="#">都市</a></span> -->
+              <span class="novel-outline">
+                讲述两个屌丝青年的荔枝故事。讲述两个屌丝青年的荔枝故事。讲述两个屌丝青年的荔枝故事。讲述两个屌丝青年的荔枝故事。讲述两个屌丝青年的荔枝故事。...
+              </span>
+            </div>
+            <div class="novel-count">
+              <a href="#">5</a>
+            </div>
+
+            <div class="clear"></div>
+          </div>
+          <div class="novel-data">
+            <span class="archive">
+              <i class="glyphicon glyphicon-th-large"></i> <a href="#">长篇</a>
+            </span>
+            <span class="time">
+              <i class="glyphicon glyphicon-time"></i> 2017-08-20
+            </span>
+            <span class="tags">
+              <i class="glyphicon glyphicon-tags"></i> <a href="#">都市</a>、<a href="#">励志</a>
+            </span>
+            <span class="view">
+              <i class="glyphicon glyphicon-eye-open"></i> 2.2k views
+            </span>
+            <span class="like">
+              <i class="glyphicon glyphicon-thumbs-up"></i> <a href="#">2.2k like</a>
+            </span>
+            <span class="comment">
+              <i class="glyphicon glyphicon-comment"></i> <a href="#">1.0k comments</a>
+            </span>
+          </div>
+        </div>
+
+        <div class="post-box">
+          <div class="post-list">
+            <div class="avatar">
+              <a href="#">
+                <img src="me.png" alt="ava">
+              </a>
+            </div>
+            <div class="novel-content">
+              <h2>
+                <a href="#">业道</a>
+              </h2>
+              <!-- <span class="novel-tags"><a href="#">都市</a></span> -->
+              <span class="novel-outline">
+                讲述两个屌丝青年的荔枝故事。讲述两个屌丝青年的荔枝故事。讲述两个屌丝青年的荔枝故事。讲述两个屌丝青年的荔枝故事。讲述两个屌丝青年的荔枝故事。...
+              </span>
+            </div>
+            <div class="novel-count">
+              <a href="#">5</a>
+            </div>
+
+            <div class="clear"></div>
+          </div>
+          <div class="novel-data">
+            <span class="archive">
+              <i class="glyphicon glyphicon-th-large"></i> <a href="#">长篇</a>
+            </span>
+            <span class="time">
+              <i class="glyphicon glyphicon-time"></i> 2017-08-20
+            </span>
+            <span class="tags">
+              <i class="glyphicon glyphicon-tags"></i> <a href="#">都市</a>、<a href="#">励志</a>
+            </span>
+            <span class="view">
+              <i class="glyphicon glyphicon-eye-open"></i> 2.2k views
+            </span>
+            <span class="like">
+              <i class="glyphicon glyphicon-thumbs-up"></i> <a href="#">2.2k like</a>
+            </span>
+            <span class="comment">
+              <i class="glyphicon glyphicon-comment"></i> <a href="#">1.0k comments</a>
+            </span>
+          </div>
+        </div>
+
+        <div class="post-box">
+          <div class="post-list">
+            <div class="avatar">
+              <a href="#">
+                <img src="me.png" alt="ava">
+              </a>
+            </div>
+            <div class="novel-content">
+              <h2>
+                <a href="#">业道</a>
+              </h2>
+              <!-- <span class="novel-tags"><a href="#">都市</a></span> -->
+              <span class="novel-outline">
+                讲述两个屌丝青年的荔枝故事。讲述两个屌丝青年的荔枝故事。讲述两个屌丝青年的荔枝故事。讲述两个屌丝青年的荔枝故事。讲述两个屌丝青年的荔枝故事。...
+              </span>
+            </div>
+            <div class="novel-count">
+              <a href="#">5</a>
+            </div>
+
+            <div class="clear"></div>
+          </div>
+          <div class="novel-data">
+            <span class="archive">
+              <i class="glyphicon glyphicon-th-large"></i> <a href="#">长篇</a>
+            </span>
+            <span class="time">
+              <i class="glyphicon glyphicon-time"></i> 2017-08-20
+            </span>
+            <span class="tags">
+              <i class="glyphicon glyphicon-tags"></i> <a href="#">都市</a>、<a href="#">励志</a>
+            </span>
+            <span class="view">
+              <i class="glyphicon glyphicon-eye-open"></i> 2.2k views
+            </span>
+            <span class="like">
+              <i class="glyphicon glyphicon-thumbs-up"></i> <a href="#">2.2k like</a>
+            </span>
+            <span class="comment">
+              <i class="glyphicon glyphicon-comment"></i> <a href="#">1.0k comments</a>
+            </span>
+          </div>
+        </div>
+
+        <div class="post-box">
+          <div class="post-list">
+            <div class="avatar">
+              <a href="#">
+                <img src="me.png" alt="ava">
+              </a>
+            </div>
+            <div class="novel-content">
+              <h2>
+                <a href="#">业道</a>
+              </h2>
+              <!-- <span class="novel-tags"><a href="#">都市</a></span> -->
+              <span class="novel-outline">
+                讲述两个屌丝青年的荔枝故事。讲述两个屌丝青年的荔枝故事。讲述两个屌丝青年的荔枝故事。讲述两个屌丝青年的荔枝故事。讲述两个屌丝青年的荔枝故事。...
+              </span>
+            </div>
+            <div class="novel-count">
+              <a href="#">5</a>
+            </div>
+
+            <div class="clear"></div>
+          </div>
+          <div class="novel-data">
+            <span class="archive">
+              <i class="glyphicon glyphicon-th-large"></i> <a href="#">长篇</a>
+            </span>
+            <span class="time">
+              <i class="glyphicon glyphicon-time"></i> 2017-08-20
+            </span>
+            <span class="tags">
+              <i class="glyphicon glyphicon-tags"></i> <a href="#">都市</a>、<a href="#">励志</a>
+            </span>
+            <span class="view">
+              <i class="glyphicon glyphicon-eye-open"></i> 2.2k views
+            </span>
+            <span class="like">
+              <i class="glyphicon glyphicon-thumbs-up"></i> <a href="#">2.2k like</a>
+            </span>
+            <span class="comment">
+              <i class="glyphicon glyphicon-comment"></i> <a href="#">1.0k comments</a>
+            </span>
+          </div>
+        </div>
+
+        <div class="post-box">
+          <div class="post-list">
+            <div class="avatar">
+              <a href="#">
+                <img src="me.png" alt="ava">
+              </a>
+            </div>
+            <div class="novel-content">
+              <h2>
+                <a href="#">业道</a>
+              </h2>
+              <!-- <span class="novel-tags"><a href="#">都市</a></span> -->
+              <span class="novel-outline">
+                讲述两个屌丝青年的荔枝故事。讲述两个屌丝青年的荔枝故事。讲述两个屌丝青年的荔枝故事。讲述两个屌丝青年的荔枝故事。讲述两个屌丝青年的荔枝故事。...
+              </span>
+            </div>
+            <div class="novel-count">
+              <a href="#">5</a>
+            </div>
+
+            <div class="clear"></div>
+          </div>
+          <div class="novel-data">
+            <span class="archive">
+              <i class="glyphicon glyphicon-th-large"></i> <a href="#">长篇</a>
+            </span>
+            <span class="time">
+              <i class="glyphicon glyphicon-time"></i> 2017-08-20
+            </span>
+            <span class="tags">
+              <i class="glyphicon glyphicon-tags"></i> <a href="#">都市</a>、<a href="#">励志</a>
+            </span>
+            <span class="view">
+              <i class="glyphicon glyphicon-eye-open"></i> 2.2k views
+            </span>
+            <span class="like">
+              <i class="glyphicon glyphicon-thumbs-up"></i> <a href="#">2.2k like</a>
+            </span>
+            <span class="comment">
+              <i class="glyphicon glyphicon-comment"></i> <a href="#">1.0k comments</a>
+            </span>
+          </div>
+        </div>
+
+        <div class="pagination-box">
+
+          <!-- <div class="float-left">
+            <a href="#"><<上一页</a>
+          </div> -->
+          <span class="current-page">1</span>
+          <a href="#">2</a>
+          <div class="float-right">
+            <a href="#">下一页>></a>
+          </div>
+
+          <div class="clear"></div>
+
+        </div>
+        {% endblock %}
+
+      </div>
+
+      <!-- 侧栏 -->
+      <div class="main-sider">
+        <div class="sider-box">
+          <div class="sider-title">网站公告</div>
+          <div class="sider-content">
+            这儿是本网站的公告栏，这里需要有一些东西啊啊啊啊啊啊。啊这儿是本网站的公告栏，这里需要有一些东西啊啊啊啊啊啊。啊这儿是本网站的公告栏，这里需要有一些东西啊啊啊啊啊啊。
+          </div>
+        </div>
+        {% block sider %}
+        <div class="sider-box">
+          <div class="sider-title">侧栏标题</div>
+          <div class="sider-content">
+            侧栏内容部分。侧栏内容部分。侧栏内容部分。侧栏内容部分。侧栏内容部分。侧栏内容部分。侧栏内容部分。侧栏内容部分。侧栏内容部分。侧栏内容部分。侧栏内容部分。侧栏内容部分。侧栏内容部分。侧栏内容部分。侧栏内容部分。侧栏内容部分。侧栏内容部分。侧栏内容部分。侧栏内容部分。侧栏内容部分。侧栏内容部分。侧栏内容部分。侧栏内容部分。侧栏内容部分。侧栏内容部分。侧栏内容部分。侧栏内容部分。
+          </div>
+        </div>
+        {% endblock %}
+      </div>
+
+      <!-- 侧边按钮 -->
+      <a id="go-to-top" rel="nofollow" href="#top">▲</a>
+      <div class="clear"></div>
+      <!-- 页脚 -->
+      <div id="footer">
+        <p>
+           COPYRIGHT 2017 <a href="#">Always</a>. ALL RIGHTS RESERVED.<br>
+            POWERED BY <a href="#">always</a>
+        </p>
+      </div>
+    </div>
+
+    {% block script %}
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/always.js"></script>
+    {% endblock %}
+  </body>
+</html>

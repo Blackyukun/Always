@@ -1,9 +1,29 @@
-/*my styles.css*/
+/*Always styles.css*/
 body{font:17px/1.5 "微软雅黑";margin:0;padding:0;background: #f9f9f9;}
 .float-left{float: left;}
 .float-right{float: right;}
 .clear{clear: both;}
 a:link,a:visited{text-decoration: none;}
+form{
+  display: inline;
+  margin: 0;
+  padding: 0;
+}
+input[type="text"],
+input[type="password"],
+textarea{
+  border: none;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 1px;
+  color: #A6A6A6;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.5;
+  vertical-align: middle;
+  background-color: white;
+}
+input,select,textarea{vertical-align: middle;outline: 0;}
+label{cursor: pointer;}
 img{
   border: none;
   vertical-align: middle;
@@ -14,7 +34,7 @@ img{
   text-align: center;
 }
 .avatar img,.comment-avatar img{
-  max-width: 48px;
+  max-width: 100%;
   max-height: 48px;
   border-radius: 50%;
 }
@@ -24,6 +44,7 @@ img{
   height: 58px;
   border-bottom: 1px solid #ccc;
 }
+.mob-nav{display: none;}
 .nav-bar{
   width: 960px;
   height: 58px;
@@ -32,7 +53,7 @@ img{
 .logo{
   padding: 0;
   margin-top: 5px;
-  width: 60px;
+  width: 5%;
   float: left;
 }
 .buttons{
@@ -106,6 +127,8 @@ img{
   border-bottom: 2px solid #999;
 }
 
+#mob-search{display: none;}
+
 /*content*/
 /*banns*/
 #content{
@@ -116,7 +139,8 @@ img{
   width: 670px;
   float: left;
 }
-/*.banns{
+.banns{
+  display: none;
   font-size: 15px;
   border-bottom: 1px solid #E2E2E2;
   margin-bottom: 20px;
@@ -131,7 +155,7 @@ img{
 }
 .banns-content{
   padding: 10px;
-}*/
+}
 
 /*post list*/
 /*.main-list{
@@ -151,12 +175,12 @@ img{
 }
 
 .avatar{
-  width: 60px;
+  width: 9.5%;
   height: 60px;
   float: left;
 }
 .novel-content{
-  width: 530px;
+  width: 83%;
   min-height: 60px;
   margin: 0 0 7px 10px;
   float: left;
@@ -211,7 +235,7 @@ img{
 }
 
 .novel-data{
-  width: 668px;
+  width: 100%;
   background: #f4f4f4;
   padding: 10px 10px 10px 20px;
   font-size: 12px;
@@ -227,10 +251,45 @@ img{
   margin-right: 20px;
 }
 
+/*pagination*/
+.pagination-box{
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-top: none;
+  padding: 10px 10px 10px 10px;
+  background: #fff;
+  text-align: center;
+  font-size: 14px;
+  line-height: 2.5em;
+}
+
+.pagination-box a:hover,
+.pagination-box a:active,
+.current-page{
+  background-color: #E5E5E5;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+.current-page{
+  border: 1px solid #bfbfbf;
+  padding: 4px 8px;
+  margin: 0 2px;
+  font-weight: bold;
+}
+.pagination-box a{
+  padding: 4px 8px;
+  margin: 0 2px;
+  color: #444;
+  border: 1px solid #BFBFBF;
+  background: #fff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
 /*sider*/
 .main-sider{
   float: right;
-  width: 270px;
+  width: 28%;
   font-size: 12px;
 }
 .sider-box{
@@ -412,7 +471,7 @@ p{
   line-height: 20px;
   margin-bottom: 5px;
 }
-.letter{
+.letter-btn{
   float: right;
   position: relative;
   margin: 10px;
@@ -420,4 +479,79 @@ p{
   right: 0;
   overflow: hidden;
   height: auto;
+}
+
+/*to top button*/
+#go-to-top{
+  display: none;
+  position: fixed;
+  width: 50px;
+  bottom: 50px;
+  padding: 15px 10px;
+  color: #666;
+  background: #ECECEC;
+  font: 24px/12px Helvetica,Arial,Verdana;
+  opacity: 0.7;
+  outline: 0 none;
+  text-align: center;
+  text-decoration: none;
+  text-shadow: 0 0 1px #DDD;
+  vertical-align: baseline;
+  border-radius: 2px;
+}
+
+/*footer*/
+#footer{
+  min-width: 50%;
+  margin: auto;
+  padding: 0;
+  text-align: center;
+}
+#footer p{
+  font-size: 12px;
+}
+
+/*login form*/
+.input-box{
+  width: 670px;
+  padding: 10px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #E2E2E9;
+  background: #fff;
+  box-shadow: 2px 2px 5px #d3d6da;
+}
+.tlg{
+  font-size: 14px !important;
+  line-height: 20px;
+}
+.tlg td{
+  padding: 10px 10px 5px 10px;
+}
+.input1{width: 200px;}
+/*.nknameInput{
+  color: #db4437 !important;
+  margin-bottom: 0 !important;
+  border-bottom: 2px solid #db4437 !important;
+}*/
+#verification-img{
+  display: none;
+}
+input.lgbtn{
+  color: #333;
+  text-decoration: none;
+  vertical-align: middle;
+  border: none;
+  background-color: #D6D7D7;
+  transition: background-color 0.5s ease-in-out;
+  cursor: pointer;
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: normal;
+  text-align: center;
+  white-space: nowrap;
+  padding: 4px 20px;
+  font-size: 13px;
+  line-height: 18px;
+  user-select: none;
+  text-shadow: none;
 }

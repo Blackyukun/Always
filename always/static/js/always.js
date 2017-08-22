@@ -1,36 +1,53 @@
-/**
- * Created by Administrator on 2017/8/20 0020.
- */
-window.onload = function() {
-    var headerNav = document.getElementsByClassName('buttons')[0];
-    var navbtns = headerNav.getElementsByTagName('a');
+// Always js
 
-    var searchInput = document.getElementById('searchInput');
+$(function() {
+  // 导航栏点击效果
+  $('.buttons a:gt(0)').click(function() {
+    $('.buttons a:gt(0)').removeClass();
+    $(this).attr('class', 'current');
+  });
 
-    var postList = document.getElementsByClassName('post-box');
+  // 首页文章box效果
+  $('.post-box').mouseenter(function() {
+    $(this).css('boxShadow', '2px 2px 5px #d3d6da');
+  });
+  $('.post-box').mouseleave(function() {
+    $(this).css('boxShadow', '');
+  });
 
-    for (var i=1; i<navbtns.length; i++) {
-      navbtns[i].onclick = function() {
-        for (var j=1; j<navbtns.length; j++) {
-          navbtns[j].className = '';
-        }
-        this.className = 'current';
+  // button go to top
+  $(function() {
+    $(window).scroll(function() {
+      if ($(window).scrollTop() > 100) {
+        $('#go-to-top').fadeIn(1000);
+        $('#go-to-top').css('left', (Math.max(document.body.clientWidth, 960) - 960) / 2 + 690);
+      } else {
+        $('#go-to-top').fadeOut(1000);
       }
-    }
+    });
 
-    navbtns[0].onclick = function() {
+    $('#go-to-top').click(function() {
+      $('html, body').animate({scrollTop: 0}, 1000);
+      return false;
+    });
+  });
 
-    };
-    // searchInput.onclick = function() {
-    //   this.style.borderLeft = "2px solid #df846c;"
-    // }
-    // post-list onmouseover
-    for (var a=0; a<postList.length; a++) {
-      postList[a].onmouseover = function() {
-        this.style.boxShadow = "2px 2px 5px #d3d6da";
-      };
-      postList[a].onmouseout = function() {
-        this.style.boxShadow = "";
-      }
+})
+
+$(function() {
+  // 移动端导航按钮
+  $('.menu-btn').click(function() {
+    if ($('#menu').css('display') === 'none') {
+      $('#menu').css('display', 'block');
+    } else {
+      $('#menu').css('display', 'none');
     }
-  };
+  });
+  // 搜索框
+  $('#menu .menu-list .list:first-child').click(function() {
+    $('#mob-search').css('display', 'block');
+  });
+  $('#mob-search #cancel').click(function() {
+    $('#mob-search').css('display', 'none');
+  })
+})
