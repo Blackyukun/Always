@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from flask_login import UserMixin, AnonymousUserMixin
 from hashlib import md5
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -52,10 +54,13 @@ class User(UserMixin, db.Model):
     nickname = db.Column(db.String(64), index=True, unique=True)
     email = db.Column(db.String(120), index=True, unique=True)
     password_hash = db.Column(db.String(128))
-    about_me = db.Column(db.String(140))
+    sex = db.Column(db.String(), default='保密')
+    profile = db.Column(db.String(140))
+    timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     last_seen = db.Column(db.DateTime)
 
     role_id = db.Column(db.Integer, db.ForeignKey('roles.id'))
+    posts = db.relationship('Post', backref='author', lazy='dynamic')
 
     @property
     def password(self):
@@ -76,6 +81,14 @@ def load_user(user_id):
 
 class Post(db.Model):
     __tablename__ = 'posts'
-    pass
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(64))
+    body = db.Column(db.Text)
+    body_html = db.Column(db.Text)
+    disabled = db.Column(db.Boolean)
+    view_num = db.Column(db.Integer, default=0)
+    draft = db.Column(db.Boolean, default=False)
+    timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
 
+    author_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 

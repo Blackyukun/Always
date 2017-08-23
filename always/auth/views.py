@@ -1,17 +1,19 @@
-from flask import render_template, redirect, url_for, request, Blueprint, flash
-from flask_login import login_user, login_required, logout_user
+from flask import render_template, redirect, \
+    url_for, request, Blueprint, flash, jsonify
+from flask_login import login_user, login_required, logout_user, current_user
 
 from always import db
 from always.models import User
-from .forms import LoginForm, RegisterForm
+from .forms import LoginForm, RegisterForm, ChangePasswordForm, ChangeDataForm
 
 auth = Blueprint('auth', __name__)
 
+# login
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
     if form.validate_on_submit():
-        user = User.query.filter_by(nickname=form.nickname.data).first()
+        user = User.query.filter_by(email=form.email.data).first()
         if user is not None and user.verify_password(form.password.data):
             login_user(user, form.remember_me.data)
             return redirect(url_for('main.index'))
@@ -20,6 +22,7 @@ def login():
                            title='登录',
                            form=form)
 
+# logout
 @auth.route('/logout')
 @login_required
 def logout():
@@ -27,6 +30,7 @@ def logout():
     flash('你已经登出账号。')
     return redirect(url_for('main.index'))
 
+# register
 @auth.route('/register', methods=['GET', 'POST'])
 def register():
     form = RegisterForm()
@@ -41,3 +45,58 @@ def register():
                            title='注册',
                            form=form)
 
+# change password and personal data by ajax
+# have bug, remember deal this bug tomorrow
+@auth.route('/settings', methods=['GET','POST'])
+@login_required
+def change_data():
+    form = ChangePasswordForm()
+    form2 = ChangeDataForm()
+    # change password
+    if form.change_password.data and form.validate_on_submit():
+        if current_user.verify_password(form.old_password.data):
+            current_user.password = form.password.data
+            db.session.add(current_user)
+            flash('你的密码已经更改。')
+            return jsonify({"status": "success"})
+        else:
+            flash('无效的密码。')
+
+    # setting data
+    if form2.save_setting.data and form2.validate_on_submit():
+        current_user.nickname = form2.nickname.data
+        current_user.sex = form2.sex.data
+        current_user.profile = form2.profile.data
+        db.session.add(current_user)
+        flash('更改资料成功。')
+        return jsonify({"status": "success"})
+    else:
+        form2.nickname.data = current_user.nickname
+        form2.sex.data = current_user.sex
+        form2.profile.data = current_user.profile
+
+    # current_user.nickname = request.form.get('nickname')
+    # current_user.sex = request.form.get('sex')
+    # current_user.profile = request.form.get('profile')
+    # settingform = ChangeDataForm(current_user.nickname, current_user.sex, current_user.profile)
+    # if settingform.validate_on_submit():
+    #     db.session.add(current_user)
+    #     flash('更改资料成功。')
+    #     return jsonify({"status": "success"})
+    # else:
+    #     flash('更改资料失败。')
+    # old_password = request.form.get('old_password')
+    # current_user.password = request.form.get('password')
+    # changeform = ChangePasswordForm(current_user.password)
+    # if changeform.validate_on_submit():
+    #     if current_user.verify_password(old_password):
+    #         db.session.add(current_user)
+    #         flash('你的密码已经更改。')
+    #         return jsonify({"status": "success"})
+    #     else:
+    #         flash('无效的密码。')
+
+    return render_template('auth/settings.html',
+                           title='设置资料',
+                           form=form,
+                           form2=form2)

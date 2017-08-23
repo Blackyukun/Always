@@ -18,7 +18,7 @@ def user(nickname):
         return redirect(url_for('main.index'))
     posts = user.posts.order_by(Post.timestamp.desc()).all()
     posts = [post for post in posts if post.draft == False]
-    return render_template('user/user.html',
+    return render_template('main/user.html',
                            user=user,
                            posts=posts,
                            title='个人资料')
