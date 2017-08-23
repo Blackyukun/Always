@@ -22,31 +22,29 @@
         <tr>
           <td width="180" align="right">昵称</td>
           <td width="auto" align="left">
-            {{form.nickname(id="nickname",class="input1 nknameInput")}}
+            {{form.nickname(id="nickname",class="input1 nknameInput")}}<br>
               {% for error in form.nickname.errors %}
                 <span style="color: red;">[{{error}}]</span>
               {% endfor %}
-            <!--<input type="text" name="nickname" id="nickname" class="input1 nknameInput">-->
           </td>
         </tr>
         <tr>
           <td width="180" align="right">密码</td>
           <td width="auto" align="left">
-            {{form.password(class="input1")}}
+            {{form.password(class="input1")}}<br>
               {% for error in form.password.errors %}
                 <span style="color: red;">[{{error}}]</span>
               {% endfor %}
-            <!--<input type="password" name="password" class="input1">-->
+
           </td>
         </tr>
         <tr>
           <td width="180" align="right">确认密码</td>
           <td width="auto" align="left">
-            {{form.password2(class="input1")}}
+            {{form.password2(class="input1")}}<br>
               {% for error in form.password2.errors %}
                 <span style="color: red;">[{{error}}]</span>
               {% endfor %}
-            <!--<input type="password" name="password" class="input1">-->
           </td>
         </tr>
         <!--<tr>-->

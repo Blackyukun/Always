@@ -1,0 +1,187 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div id="user-setting" class="tab-container">
+  <div class="settings-title">
+    <ul class="tabs-list">
+      <li class="tab-item tab-active" aria-controls="item-0" role="tab">资料设置</li>
+      <li class="tab-item" aria-controls="item-1" role="tab">密码设置</li>
+    </ul>
+  </div>
+
+  <div class="tabs-container main-box">
+
+    <div class="tab-content tab-content-active" aria-labelledby="item-0">
+      <p class="red">
+        {% with messages = get_flashed_messages() %}
+		{% if messages %}
+		{% for message in messages %}
+			<strong>{{ message }}</strong>
+		{% endfor %}
+		{% endif %}
+		{% endwith %}
+      </p>
+      <form method="post" action="" name="data" id="settingform">
+        {{form2.hidden_tag()}}
+        <table cellpadding="5" cellspacing="8" border="0" width="100%" class="tset">
+          <tbody>
+            <tr>
+              <td width="180" align="right">昵称</td>
+              <td width="auto" align="left">
+                {{form2.nickname(class="tset-input",placeholder="{{current_user.nickname}}")}}<br>
+                {% for error in form2.nickname.errors %}
+                    <span style="color: red;">{{error}}</span>
+                {% endfor %}<br>
+              </td>
+            </tr>
+            <tr>
+              <td width="180" align="right">性别</td>
+              <td width="auto" align="left">
+                {{form2.sex}}
+              </td>
+            </tr>
+            <tr>
+              <td width="180" align="right">个性简介</td>
+              <td width="auto" align="left">
+                {{form2.profile(class="tset-text")}}<br>
+                {% for error in form2.profile.errors %}
+                    <span style="color: red;">{{error}}</span>
+                {% endfor %}<br>
+              </td>
+            </tr>
+            <tr>
+              <td width="180" align="right"></td>
+              <td width="auto" align="left">
+                {{form2.save_setting(class="tset-btn",value="保存设置")}}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </form>
+    </div>
+
+
+    <div class="tab-content" aria-labelledby="item-0">
+      <p class="red text-center"></p>
+      <form method="post" action="" id="changeform">
+        {{form.hidden_tag()}}
+        <table cellpadding="5" cellspacing="8" border="0" width="100%" class="tset">
+          <tbody>
+            <tr>
+              <td width="180" align="right">旧密码</td>
+              <td width="auto" align="left">
+                {{form.old_password(class="tset-input")}}<br>
+                {% for error in form.old_password.errors %}
+                    <span style="color: red;">{{error}}</span>
+                {% endfor %}<br>
+              </td>
+            </tr>
+            <tr>
+              <td width="180" align="right">新密码</td>
+              <td width="auto" align="left">
+                {{form.password(class="tset-input")}}<br>
+                {% for error in form.password.errors %}
+                    <span style="color: red;">{{error}}</span>
+                {% endfor %}<br>
+              </td>
+            </tr>
+            <tr>
+              <td width="180" align="right">确认密码</td>
+              <td width="auto" align="left">
+                {{form.password2(class="tset-input")}}<br>
+                {% for error in form.password2.errors %}
+                    <span style="color: red;">{{error}}</span>
+                {% endfor %}<br>
+              </td>
+            </tr>
+            <tr>
+              <td width="180" align="right"></td>
+              <td width="auto" align="left">
+                {{form.change_password(class="tset-btn",value="确认更改")}}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block sider %}
+
+<!-- 用户面板信息 -->
+{% if current_user.is_authenticated %}
+<div class="sider-box">
+  <div class="sider-title">{{ current_user.nickname }}
+    <span class="float-right"><a href="{{url_for('auth.logout')}}">登出</a></span>
+  </div>
+  <div class="sider-content">
+    <div class="user-avatar">
+      <a href="{{url_for('main.user',nickname=current_user.nickname)}}"><img src="{{ url_for('static',filename='images/me.png') }}" alt="{{ current_user.nickname }}"></a>
+    </div>
+    <div class="user-pannel">
+      <div class="user-name">
+        <a href="{{url_for('main.user',nickname=current_user.nickname)}}">俞坤</a>
+      </div>
+      <ul>
+        <li>
+          <a href="#">
+            <strong>2</strong><br>
+            <span>我的创作</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <strong>2</strong><br>
+            <span>我的话题</span>
+          </a>
+        </li>
+        <li class="last">
+          <a href="#">
+            <strong>2</strong><br>
+            <span>我的关注</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="clear"></div>
+</div>
+{% endif %}
+{{super()}}
+{% endblock %}
+
+{% block script %}
+{{super()}}
+<script>
+  $(function(){
+       $('.tset-btn:first-child').click(function(){
+           //ajax提交
+           post_data=$('#settingform').serialize();
+           $.ajax({
+              url:"{{url_for('auth.change_data')}}",
+              type:'POST',
+              dataType:'json',
+              data:post_data,
+              success:function(data){
+                 alert(JSON.stringify(data));
+              }
+           });
+       });
+
+       $('.tset-btn:last-child').click(function(){
+           //ajax提交
+           post_data=$('#changeform').serialize();
+           $.ajax({
+              url:"{{url_for('auth.change_data')}}",
+              type:'POST',
+              dataType:'json',
+              data:post_data,
+              success:function(data){
+                 alert(JSON.stringify(data));
+              }
+           });
+       }) ;
+    });
+</script>
+{% endblock %}

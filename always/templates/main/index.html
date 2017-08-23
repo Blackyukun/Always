@@ -336,6 +336,7 @@
 
 </div>
 {% endblock %}
+
 {% block sider %}
 
 <!-- 用户面板信息 -->
@@ -346,11 +347,11 @@
   </div>
   <div class="sider-content">
     <div class="user-avatar">
-      <a href="#"><img src="{{ url_for('static',filename='images/me.png') }}" alt="{{ current_user.nickname }}"></a>
+      <a href="{{url_for('main.user',nickname=current_user.nickname)}}"><img src="{{ url_for('static',filename='images/me.png') }}" alt="{{ current_user.nickname }}"></a>
     </div>
     <div class="user-pannel">
       <div class="user-name">
-        <a href="#">俞坤</a>
+        <a href="{{url_for('main.user',nickname=current_user.nickname)}}">俞坤</a>
       </div>
       <ul>
         <li>

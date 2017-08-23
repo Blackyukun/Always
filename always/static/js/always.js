@@ -32,7 +32,7 @@ $(function() {
     });
   });
 
-})
+});
 
 $(function() {
   // 移动端导航按钮
@@ -50,4 +50,21 @@ $(function() {
   $('#mob-search #cancel').click(function() {
     $('#mob-search').css('display', 'none');
   })
-})
+});
+
+$(function() {
+  // 设置资料选择显示表单
+  $('.settings-title .tabs-list li:first-child').click(function() {
+    $('.settings-title .tabs-list li').removeClass('tab-active');
+    $('.tabs-container .tab-content').removeClass('tab-content-active');
+    $(this).addClass('tab-active');
+    $('.tabs-container .tab-content:first-child').addClass('tab-content-active');
+  });
+  $('.settings-title .tabs-list li:last-child').click(function() {
+    $('.settings-title .tabs-list li').removeClass('tab-active');
+    $('.tabs-container .tab-content').removeClass('tab-content-active');
+    $(this).addClass('tab-active');
+    $('.tabs-container .tab-content:last-child').addClass('tab-content-active');
+  });
+
+});
