@@ -121,7 +121,7 @@
     </div>
     <div class="user-pannel">
       <div class="user-name">
-        <a href="{{url_for('main.user',nickname=current_user.nickname)}}">俞坤</a>
+        <a href="{{url_for('main.user',nickname=current_user.nickname)}}">{{current_user.nickname}}</a>
       </div>
       <ul>
         <li>
@@ -149,39 +149,4 @@
 </div>
 {% endif %}
 {{super()}}
-{% endblock %}
-
-{% block script %}
-{{super()}}
-<script>
-  $(function(){
-       $('.tset-btn:first-child').click(function(){
-           //ajax提交
-           post_data=$('#settingform').serialize();
-           $.ajax({
-              url:"{{url_for('auth.change_data')}}",
-              type:'POST',
-              dataType:'json',
-              data:post_data,
-              success:function(data){
-                 alert(JSON.stringify(data));
-              }
-           });
-       });
-
-       $('.tset-btn:last-child').click(function(){
-           //ajax提交
-           post_data=$('#changeform').serialize();
-           $.ajax({
-              url:"{{url_for('auth.change_data')}}",
-              type:'POST',
-              dataType:'json',
-              data:post_data,
-              success:function(data){
-                 alert(JSON.stringify(data));
-              }
-           });
-       }) ;
-    });
-</script>
 {% endblock %}

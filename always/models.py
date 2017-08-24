@@ -6,7 +6,6 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 from always import db, lm
 
-
 class Role(db.Model):
     __tablename__ = 'roles'
     id = db.Column(db.Integer, primary_key=True)
@@ -39,7 +38,7 @@ class Role(db.Model):
     def __repr__(self):
         return '<Role %r>' % self.name
 
-
+# 权限设置
 class Permission(object):
     FOLLOW = 0x01
     COMMENT = 0x02
@@ -78,7 +77,7 @@ class User(UserMixin, db.Model):
 def load_user(user_id):
     return User.query.get(int(user_id))
 
-
+# 文章模型
 class Post(db.Model):
     __tablename__ = 'posts'
     id = db.Column(db.Integer, primary_key=True)
@@ -92,3 +91,30 @@ class Post(db.Model):
 
     author_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 
+# 小说
+class Novel(db.Model):
+    __tablename__ = 'novels'
+    id = db.Column(db.Integer, primary_key=True)
+    novel = db.Column(db.String(64))
+    category = db.Column(db.String(), default='长篇')
+    tag = db.Column(db.String())
+    view_num = db.Column(db.Integer, default=0)
+    timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+
+    author_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    chapters = db.relationship('Chapter', backref='novel', lazy='dynamic')
+
+# 小说章节
+class Chapter(db.Model):
+    __tablename__ = 'chapters'
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(64))
+    body = db.Column(db.Text)
+    body_html = db.Column(db.Text)
+    disabled = db.Column(db.Boolean)
+    view_num = db.Column(db.Integer, default=0)
+    draft = db.Column(db.Boolean, default=False)
+    timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+
+    author_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    novel_id = db.Column(db.Integer, db.ForeignKey('novels.id'))

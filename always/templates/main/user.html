@@ -10,16 +10,38 @@
   </div>
   <div class="member-detail">
     <p>用户名：<strong>{{user.nickname}}</strong></p>
+    <p>性别：<strong>{{user.sex}}</strong></p>
     <p>注册于：<strong>{{user.timestamp}}</strong></p>
     <P>创作数：<a href="#"><strong>2</strong></a> &nbsp;&nbsp;&nbsp;获赞数：<strong>3.1k</strong></p>
+    <P>粉丝：<a href="#"><strong>2</strong></a> &nbsp;&nbsp;&nbsp;关注：<strong>3.1k</strong></p>
     <p>简介：<strong>{{user.profile}}</strong></p>
-    <p>最后离开：<strong>2017-08-20</strong></p>
+    <p>最后离开：<strong>2017-08-20</strong></p><hr>
+    {% if user != current_user %}
+    <p>
+      <a href="#" class="btn btn-info">
+        <span class="glyphicon glyphicon-heart"></span> 关注
+      </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <a href="#" class="btn btn-info">
+        <span class="glyphicon glyphicon-envelope"></span> 私信
+      </a>
+    </p>
+    {% else %}
+    <p>
+      <a href="#" class="btn btn-info">
+        <span class="glyphicon glyphicon-book"></span> 作品
+      </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <a href="{{url_for('auth.change_data')}}" class="btn btn-info">
+        <span class="glyphicon glyphicon-cog"></span> 设置
+      </a>
+    </p>
+    {% endif %}
   </div>
-  <div class="letter-btn">
-    <a href="#" class="btn btn-info">
-      <span class="glyphicon glyphicon-envelope"></span> 私信
-    </a>
-  </div>
+  <!--<div class="member-btn">-->
+    <!--<a href="#" class="btn btn-info">-->
+      <!--<span class="glyphicon glyphicon-envelope"></span> 私信-->
+    <!--</a>-->
+  <!--</div>-->
+
   <div class="clear"></div>
 </div>
 
@@ -42,7 +64,7 @@
     </div>
     <div class="user-pannel">
       <div class="user-name">
-        <a href="{{url_for('main.user',nickname=current_user.nickname)}}">俞坤</a>
+        <a href="{{url_for('main.user',nickname=current_user.nickname)}}">{{current_user.nickname}}</a>
       </div>
       <ul>
         <li>

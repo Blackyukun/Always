@@ -26,28 +26,31 @@
           </div>
           <a href="#" class>关于</a>
           {% if current_user.is_authenticated %}
-          <a href="#" class>创作</a>
+          <a href="{{url_for('main.write')}}" class>创作</a>
           <a href="#" class>消息</a>
           {% else %}
           <a href="{{url_for('auth.register')}}" class>注册</a>
           <a href="{{url_for('auth.login')}}" class>登录</a>
           {% endif %}
-          <a href="#" class="current">首页</a>
+          <a href="{{url_for('main.index')}}" class="current">首页</a>
         </div>
     	</div>
       <!-- 移动端导航 -->
       <div class="mob-nav">
         <a href="#"><h1 class="nav-title">Always</h1></a>
         <a class="menu-btn"><i class="glyphicon glyphicon-th-list"></i></a>
+        {% if current_user.is_authenticated %}
+        <a class="user-btn"><i class="glyphicon glyphicon-user"></i></a>
+        {% endif %}
         <nav id="menu">
           <div class="menu-list">
             <ul class="list">
               <li class><a href="#"><i class="glyphicon glyphicon-search"></i> &nbsp;&nbsp;&nbsp;搜索</a></li>
               <li class><a href="#"><i class="glyphicon glyphicon-fire"></i> &nbsp;&nbsp;&nbsp;推荐</a></li>
-              <li class><a href="/"><i class="glyphicon glyphicon-home"></i> &nbsp;&nbsp;&nbsp;首页</a></li>
+              <li class><a href="{{url_for('main.index')}}"><i class="glyphicon glyphicon-home"></i> &nbsp;&nbsp;&nbsp;首页</a></li>
               {% if current_user.is_authenticated %}
               <li class><a href="#"><i class="glyphicon glyphicon-comment"></i> &nbsp;&nbsp;&nbsp;消息</a></li>
-              <li class><a href="#"><i class="glyphicon glyphicon-pencil"></i> &nbsp;&nbsp;&nbsp;创作</a></li>
+              <li class><a href="{{url_for('main.write')}}"><i class="glyphicon glyphicon-pencil"></i> &nbsp;&nbsp;&nbsp;创作</a></li>
               {% else %}
               <li class><a href="{{url_for('auth.login')}}"><i class="glyphicon glyphicon-log-in"></i> &nbsp;&nbsp;&nbsp;登录</a></li>
               <li class><a href="{{url_for('auth.register')}}"><i class="glyphicon glyphicon-plus"></i> &nbsp;&nbsp;&nbsp;注册</a></li>

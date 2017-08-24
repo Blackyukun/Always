@@ -1,7 +1,9 @@
 from flask import render_template, redirect, url_for, request, Blueprint, flash
+from flask_login import login_required, current_user
 
 from always import db
-from always.models import User, Post
+from always.models import User, Post, Permission
+from .forms import ArticleForm, NovelForm
 
 main = Blueprint('main', __name__)
 
@@ -22,5 +24,13 @@ def user(nickname):
                            user=user,
                            posts=posts,
                            title='个人资料')
+
+@main.route('/write/article', methods=['GET', 'POST'])
+@login_required
+def write_article():
+    form = ArticleForm()
+    if current_user.operation(Permission.WRITE_ARTICLES) and \
+            form.validate_on_submit():
+        pass
 
 

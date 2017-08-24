@@ -45,8 +45,7 @@ def register():
                            title='注册',
                            form=form)
 
-# change password and personal data by ajax
-# have bug, remember deal this bug tomorrow
+# change password and personal data
 @auth.route('/settings', methods=['GET','POST'])
 @login_required
 def change_data():
@@ -58,7 +57,7 @@ def change_data():
             current_user.password = form.password.data
             db.session.add(current_user)
             flash('你的密码已经更改。')
-            return jsonify({"status": "success"})
+            return redirect(url_for('auth.change_data'))
         else:
             flash('无效的密码。')
 
@@ -69,32 +68,11 @@ def change_data():
         current_user.profile = form2.profile.data
         db.session.add(current_user)
         flash('更改资料成功。')
-        return jsonify({"status": "success"})
+        return redirect(url_for('auth.change_data'))
     else:
         form2.nickname.data = current_user.nickname
         form2.sex.data = current_user.sex
         form2.profile.data = current_user.profile
-
-    # current_user.nickname = request.form.get('nickname')
-    # current_user.sex = request.form.get('sex')
-    # current_user.profile = request.form.get('profile')
-    # settingform = ChangeDataForm(current_user.nickname, current_user.sex, current_user.profile)
-    # if settingform.validate_on_submit():
-    #     db.session.add(current_user)
-    #     flash('更改资料成功。')
-    #     return jsonify({"status": "success"})
-    # else:
-    #     flash('更改资料失败。')
-    # old_password = request.form.get('old_password')
-    # current_user.password = request.form.get('password')
-    # changeform = ChangePasswordForm(current_user.password)
-    # if changeform.validate_on_submit():
-    #     if current_user.verify_password(old_password):
-    #         db.session.add(current_user)
-    #         flash('你的密码已经更改。')
-    #         return jsonify({"status": "success"})
-    #     else:
-    #         flash('无效的密码。')
 
     return render_template('auth/settings.html',
                            title='设置资料',

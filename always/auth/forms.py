@@ -49,7 +49,7 @@ class ChangeDataForm(FlaskForm):
     nickname = StringField('nickname', validators=[DataRequired(), Length(1, 64),
                     Regexp('^[\u4e00-\u9fa5]|[a-z]|[A-Z][0-9_.]*', 0,
                            "昵称必须以汉字或字母开头哦。")])
-    sex = SelectField('sex', choices=[(0, '男'), (1, '女'), (3, '保密')])
+    sex = SelectField('sex', choices=[('男', '男'), ('女', '女'), ('保密', '保密')])
     profile = TextAreaField('profile', validators=[Length(0, 140)])
     save_setting = SubmitField('save settings')
 

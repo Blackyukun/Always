@@ -540,15 +540,18 @@ p{
   line-height: 20px;
   margin-bottom: 5px;
 }
-.letter-btn{
-  float: right;
-  position: relative;
-  margin: 10px;
-  top: 0;
-  right: 0;
-  overflow: hidden;
-  height: auto;
+.member-detail p a{
+  color: #fff;
 }
+/*.member-btn{*/
+  /*float: right;*/
+  /*position: relative;*/
+  /*margin: 10px;*/
+  /*top: 0;*/
+  /*right: 0;*/
+  /*overflow: hidden;*/
+  /*height: auto;*/
+/*}*/
 
 /*to top button*/
 #go-to-top{
@@ -657,13 +660,10 @@ ul.tabs-list li{
   border-bottom: 3px solid #df846c !important;
 }
 .tabs-container{
-  border-top: 1px solid #CCC;
   padding: 10px;
   margin-bottom: 20px;
 
   background: #FFF;
-
-  background-color: #fff;
   clear: left;
   font-size: 14px;
 }
