@@ -5,6 +5,15 @@
   <strong>注册</strong>
 </div>
 <div class="input-box">
+  <p class="red">
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for message in messages %}
+        <strong>{{ message }}</strong>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+  </p>
   <form action="?" method="post" name="login">
     {{form.hidden_tag()}}
     <table cellpadding="5" cellspacing="8" border="0" width="100%" class="tlg">

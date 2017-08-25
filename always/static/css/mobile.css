@@ -2,15 +2,19 @@
 /*navs*/
 #header{
   width:100%;
-  position: relative;
+  position: fixed;
   overflow: hidden;
   z-index: 250;
   box-sizing: border-box;
   height: 45px;
+  top: 0;
   left: 0;
   right: 0;
   border: none;
   background: #999;
+}
+.nav{
+  display: none;
 }
 .nav-bar{
   display: none;
@@ -186,13 +190,43 @@ nav{
 
 .banns{display: block;}
 #content{
-  width: 100%;
+  width: 99%;
+  margin: 65px 5px 20px 5px;
 }
 .main-content{
-  width: 98%;
-  margin: 0 5px;
+  width: 100%;
   float: none;
 }
 .main-sider{
   display: none;
+}
+
+/*移动端文章页*/
+.chapter-title{
+  float: left;
+  width: 80%;
+}
+.detail-avatar{
+  width: 20%;
+  float: right;
+}
+.detail-avatar img{
+  width: 100%;
+  border-radius: 50%;
+}
+.chapter-content{
+  font-size: 12px;
+  padding: 0 5px;
+}
+/*comments*/
+.comment-avatar{
+  width: 10%;
+  float: left;
+}
+.comment-data{
+  width: 88%;
+  float: right;
+}
+.comment-content{
+  width: 100%;
 }
