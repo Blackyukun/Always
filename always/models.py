@@ -83,6 +83,7 @@ class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(64))
     body = db.Column(db.Text)
+    tag = db.Column(db.String())
     body_html = db.Column(db.Text)
     disabled = db.Column(db.Boolean)
     view_num = db.Column(db.Integer, default=0)
@@ -90,6 +91,16 @@ class Post(db.Model):
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
 
     author_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    # tag_name = db.Column(db.String(), db.ForeignKey('post_tags,name'))
+
+# # 文章标签
+# class PostTag(db.Model):
+#     __tablename__ = 'post_tags'
+#     id = db.Column(db.Integer, primary_key=True)
+#     name = db.Column(db.String(), default='无')
+#
+#     posts = db.relationship('Post', backref='tag', lazy='dynamic')
+
 
 # 小说
 class Novel(db.Model):
@@ -102,6 +113,7 @@ class Novel(db.Model):
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
 
     author_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    # tag_name = db.Column(db.String(), db.ForeignKey('novel_tags,name'))
     chapters = db.relationship('Chapter', backref='novel', lazy='dynamic')
 
 # 小说章节
@@ -118,3 +130,11 @@ class Chapter(db.Model):
 
     author_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     novel_id = db.Column(db.Integer, db.ForeignKey('novels.id'))
+
+# # 小说标签
+# class NovelTag(db.Model):
+#     __tablename__ = 'novel_tags'
+#     id = db.Column(db.Integer, primary_key=True)
+#     name = db.Column(db.String())
+#
+#     novels = db.relationship('Novel', backref='tag', lazy='dynamic')
