@@ -8,6 +8,16 @@ a, a:link, a:visited, a:active {
     text-decoration: none;
     word-wrap: break-word;
 }
+p.message{
+    margin: 0 auto 20px auto;
+    background: #fff;
+    font-size: 15px;
+    color: #f70;
+    text-align: center;
+    border-radius: 5px;
+    padding: 10px;
+    border: 1px solid #eee;
+}
 form{
   display: inline;
   margin: 0;
@@ -191,7 +201,7 @@ p{
 .post-box{
   margin-bottom: 20px;
   border: 1px solid #ddd;
-  border-top: none;
+  border-radius: 5px;
 }
 .post-list{
   padding: 10px;
@@ -278,7 +288,7 @@ p{
 .pagination-box{
   margin-bottom: 20px;
   border: 1px solid #ddd;
-  border-top: none;
+  border-radius: 5px;
   padding: 10px 10px 10px 10px;
   background: #fff;
   text-align: center;
@@ -295,6 +305,7 @@ p{
 }
 .current-page{
   border: 1px solid #bfbfbf;
+  border-radius: 5px;
   padding: 4px 8px;
   margin: 0 2px;
   font-weight: bold;
@@ -304,6 +315,7 @@ p{
   margin: 0 2px;
   color: #444;
   border: 1px solid #BFBFBF;
+  border-radius: 5px;
   background: #fff;
   text-decoration: none;
   font-weight: bold;
@@ -685,10 +697,7 @@ ul.tabs-list li{
 .tab-content-active{
   display: block;
 }
-p.red{
-  color: #E51C23;
-  text-align: center;
-}
+
 .tset{
   font-size: 14px !important;
   line-height: 20px;
@@ -761,12 +770,12 @@ input.tset-btn:hover{
   width: 30%;
   margin: 0 auto;
   padding: 10px;
-  background: #8ac007;
-  border: 1px solid #999;
+  background: #ff921a;
+  border: 1px solid #df846c;
   border-radius: 5px;
 }
 .write-article:hover,.write-novel:hover{
-  color: #8ac007;
+  color: #f70;
   background: #fff;
 }
 

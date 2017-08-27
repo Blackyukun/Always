@@ -46,6 +46,14 @@ class Permission(object):
     MODERATE_COMMENTS = 0x08
     ADMINISTER = 0x80
 
+# 检验用户权限对应的类
+class AnonymousUser(AnonymousUserMixin):
+    def operation(self, permissions):
+        return False
+
+    def is_administrator(self):
+        return False
+
 
 class User(UserMixin, db.Model):
     __tablename__ = 'users'
@@ -84,7 +92,6 @@ class Post(db.Model):
     title = db.Column(db.String(64))
     body = db.Column(db.Text)
     tag = db.Column(db.String())
-    body_html = db.Column(db.Text)
     disabled = db.Column(db.Boolean)
     view_num = db.Column(db.Integer, default=0)
     draft = db.Column(db.Boolean, default=False)
@@ -92,15 +99,6 @@ class Post(db.Model):
 
     author_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     # tag_name = db.Column(db.String(), db.ForeignKey('post_tags,name'))
-
-# # 文章标签
-# class PostTag(db.Model):
-#     __tablename__ = 'post_tags'
-#     id = db.Column(db.Integer, primary_key=True)
-#     name = db.Column(db.String(), default='无')
-#
-#     posts = db.relationship('Post', backref='tag', lazy='dynamic')
-
 
 # 小说
 class Novel(db.Model):
@@ -122,7 +120,6 @@ class Chapter(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(64))
     body = db.Column(db.Text)
-    body_html = db.Column(db.Text)
     disabled = db.Column(db.Boolean)
     view_num = db.Column(db.Integer, default=0)
     draft = db.Column(db.Boolean, default=False)
@@ -131,10 +128,52 @@ class Chapter(db.Model):
     author_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     novel_id = db.Column(db.Integer, db.ForeignKey('novels.id'))
 
-# # 小说标签
-# class NovelTag(db.Model):
-#     __tablename__ = 'novel_tags'
-#     id = db.Column(db.Integer, primary_key=True)
-#     name = db.Column(db.String())
-#
-#     novels = db.relationship('Novel', backref='tag', lazy='dynamic')
+# 评论
+class Comment(db.Model):
+    __tablename__ = 'comments'
+    id = db.Column(db.Integer, primary_key=True)
+    body = db.Column(db.Text)
+    timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow())
+    disabled = db.Column(db.Boolean)
+    # 评论类型有comment,reply
+    comment_type = db.Column(db.String(64), default='comment')
+    reply_to = db.Column(db.String(128), default='notReply')
+    unread = db.Column(db.Boolean)
+
+    author_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    post_id = db.Column(db.Integer, db.ForeignKey('posts.id'))
+    chapter_id = db.Column(db.Integer, db.ForeignKey('chapters.id'))
+
+# 点赞
+class Like(db.Model):
+    __tablename__ = 'likes'
+    id = db.Column(db.Integer, primary_key=True)
+    unread = db.Column(db.Boolean, default=True)
+    timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow())
+
+    liker_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    post_id = db.Column(db.Integer, db.ForeignKey('posts.id'))
+    chapter_id = db.Column(db.Integer, db.ForeignKey('chapters.id'))
+
+# 私信会话
+class Conversation(db.Model):
+    __tablename__ = 'conversations'
+    id = db.Column(db.Integer, primary_key=True)
+    from_user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    to_user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    letter = db.Column(db.String(255))
+    timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow())
+    unread = db.Column(db.Boolean, default=True)
+
+    to_user = db.relationship('User', lazy='joined', foreign_keys=[to_user_id])
+    from_user = db.relationship('User', lazy='joined', foreign_keys=[from_user_id])
+
+# 管理
+class Admin(db.Model):
+    __tablename__ = 'admin'
+    id = db.Column(db.Integer, primary_key=True)
+    notice = db.Column(db.String(25))
+    timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow())
+
+    def __repr__(self):
+        return '<Admin %r>' % (self.notice)

@@ -80,7 +80,7 @@ $(function() {
   // 神奇的js，要多多学习
   // 点击创作文章div实现跳转
   $('.write-article').click(function() {
-    window.location.href="{{url_for('main.write_article')}}";
+    window.location.href="/write/article";
   });
   // 点击创作小说弹出选项
   $('.write-novel').click(function() {

@@ -13,7 +13,7 @@ class Config:
     MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
     MAIL_SENDER = 'Flasky Admin <flasky@example.com>'
     ADMIN = os.environ.get('ADMIN_MAIL')
-    POSTS_PER_PAGE = 20
+    POSTS_PER_PAGE = 10
 
     @staticmethod
     def init_app(app):

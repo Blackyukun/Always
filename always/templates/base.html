@@ -42,7 +42,7 @@
         <a href="#"><h1 class="nav-title">Always</h1></a>
         <a class="menu-btn"><i class="glyphicon glyphicon-th-list"></i></a>
         {% if current_user.is_authenticated %}
-        <a class="user-btn"><i class="glyphicon glyphicon-user"></i></a>
+        <a class="user-btn" href="{{url_for('main.user',nickname=current_user.nickname)}}"><i class="glyphicon glyphicon-user"></i></a>
         {% endif %}
         <nav id="menu">
           <div class="menu-list">
@@ -86,6 +86,15 @@
             <article>啊这儿是本网站的公告栏，这里需要有一些东西啊啊啊啊啊啊。啊这儿是本网站的公告栏，这里需要有一些东西啊啊啊啊啊啊。啊这儿是本网站的公告栏，这里需要有一些东西啊啊啊啊啊啊。啊这儿是本网站的公告栏，这里需要有一些东西啊啊啊啊啊啊。啊</article>
           </div>
         </div>
+        <p class="message">
+          {% with messages = get_flashed_messages() %}
+          {% if messages %}
+          {% for message in messages %}
+              <strong>{{ message }}</strong>
+          {% endfor %}
+          {% endif %}
+          {% endwith %}
+        </p>
         {% block content %}
 
         {% endblock %}
@@ -101,6 +110,45 @@
           </div>
         </div>
         {% block sider %}
+        <!-- 用户面板信息 -->
+        {% if current_user.is_authenticated %}
+        <div class="sider-box">
+          <div class="sider-title">{{ current_user.nickname }}
+            <span class="float-right"><a href="{{url_for('auth.logout')}}">登出</a></span>
+          </div>
+          <div class="sider-content">
+            <div class="user-avatar">
+              <a href="{{url_for('main.user',nickname=current_user.nickname)}}"><img src="{{ url_for('static',filename='images/me.png') }}" alt="{{ current_user.nickname }}"></a>
+            </div>
+            <div class="user-pannel">
+              <div class="user-name">
+                <a href="{{url_for('main.user',nickname=current_user.nickname)}}">{{current_user.nickname}}</a>
+              </div>
+              <ul>
+                <li>
+                  <a href="#">
+                    <strong>2</strong><br>
+                    <span>我的创作</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <strong>2</strong><br>
+                    <span>我的话题</span>
+                  </a>
+                </li>
+                <li class="last">
+                  <a href="#">
+                    <strong>2</strong><br>
+                    <span>我的关注</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="clear"></div>
+        </div>
+        {% endif %}
         <div class="sider-box">
           <div class="sider-title">侧栏标题</div>
           <div class="sider-content">
