@@ -2,7 +2,6 @@
 /*navs*/
 #header{
   width:100%;
-  position: fixed;
   overflow: hidden;
   z-index: 250;
   box-sizing: border-box;
@@ -11,7 +10,7 @@
   left: 0;
   right: 0;
   border: none;
-  background: #999;
+  background: rgba(54, 116, 169, 0.81);
 }
 .nav{
   display: none;
@@ -27,13 +26,13 @@
   position: absolute;
   width: 35%;
   z-index: 1;
-  height: 45px;
+  height: 25px;
   font-size: 18px;
   font-weight: bold;
   left: 27.5%;
   color: #fff;
   padding: 0;
-  margin: 10px;
+  margin-top: 10px;
   text-shadow: rgba(0, 0, 0, 0.8) 0 -1px 0;
   text-align: center;
   white-space: nowrap;
@@ -50,16 +49,7 @@
   margin-left: 20px;
   color: #ccc;
 }
-.mob-nav .user-btn{
-  position: relative;
-  top: 9px;
-  height: 36px;
-  width: 36px;
-  z-index: 2;
-  float: right;
-  color: #ccc;
-}
-.menu-btn i,.user-btn i{
+.menu-btn i{
   cursor: pointer;
 }
 #menu{
@@ -76,8 +66,8 @@
 }
 nav{
   height: 100%;
-  width: 160px;
-  position: absolute;
+  width: 200px;
+  position: relative;
   top: 0;
   left: 0;
   background: #777;
@@ -137,7 +127,7 @@ nav{
   position: absolute;
   z-index: 1000000;
   top: 20%;
-  left: 20%;
+  left: 30%;
   margin: 0 auto;
   transition: all 0.2s ease-in-out;
 }
@@ -190,8 +180,8 @@ nav{
 
 .banns{display: block;}
 #content{
-  width: 99%;
-  margin: 65px 5px 20px 5px;
+  width: 98%;
+  margin: 20px 1% 20px 1%;
 }
 .main-content{
   width: 100%;
@@ -200,6 +190,7 @@ nav{
 .main-sider{
   display: none;
 }
+
 
 /*移动端文章页*/
 .chapter-title{
@@ -224,9 +215,19 @@ nav{
   float: left;
 }
 .comment-data{
-  width: 88%;
+  width: 90%;
   float: right;
 }
 .comment-content{
   width: 100%;
 }
+
+.reply-comment-data{
+  width: 89%;
+}
+
+/*creation*/
+.write-article,.write-novel{
+  width: 50%;
+}
+

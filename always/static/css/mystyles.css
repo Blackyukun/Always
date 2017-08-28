@@ -8,16 +8,6 @@ a, a:link, a:visited, a:active {
     text-decoration: none;
     word-wrap: break-word;
 }
-p.message{
-    margin: 0 auto 20px auto;
-    background: #fff;
-    font-size: 15px;
-    color: #f70;
-    text-align: center;
-    border-radius: 5px;
-    padding: 10px;
-    border: 1px solid #eee;
-}
 form{
   display: inline;
   margin: 0;
@@ -29,7 +19,7 @@ textarea{
   border: none;
   border-bottom: 1px solid #ccc;
   margin-bottom: 1px;
-  color: #A6A6A6;
+  color: #333;
   padding: 6px 12px;
   font-size: 14px;
   line-height: 1.5;
@@ -66,7 +56,8 @@ p{
 /*navs*/
 #header{
   width: 100%;
-  height: 58px;
+  height: 57px;
+
 }
 .nav{
   position: fixed;
@@ -144,8 +135,10 @@ p{
   padding: 2px 0 2px 5px;
   width: 240px;
   border: none;
-  border-left: 2px solid #ccc;
   outline: none;
+}
+.searchbox input:focus{
+  border-left: 2px solid #df846c;
 }
 .searchbox button{
   border: none;
@@ -165,6 +158,21 @@ p{
 #mob-search{display: none;}
 
 /*content*/
+/*message*/
+p.message{
+  margin: 0 auto 20px auto;
+  background: #fff;
+  font-size: 15px;
+  color: #f70;
+  text-align: center;
+  border-radius: 5px;
+  display: none;
+  padding: 10px;
+  border: 1px solid #eee;
+}
+/*span.close_msg{*/
+  /**/
+/*}*/
 /*banns*/
 #content{
   width: 960px;
@@ -201,7 +209,7 @@ p{
 .post-box{
   margin-bottom: 20px;
   border: 1px solid #ddd;
-  border-radius: 5px;
+  border-top: none;
 }
 .post-list{
   padding: 10px;
@@ -288,7 +296,7 @@ p{
 .pagination-box{
   margin-bottom: 20px;
   border: 1px solid #ddd;
-  border-radius: 5px;
+  border-top: none;
   padding: 10px 10px 10px 10px;
   background: #fff;
   text-align: center;
@@ -305,7 +313,6 @@ p{
 }
 .current-page{
   border: 1px solid #bfbfbf;
-  border-radius: 5px;
   padding: 4px 8px;
   margin: 0 2px;
   font-weight: bold;
@@ -315,7 +322,6 @@ p{
   margin: 0 2px;
   color: #444;
   border: 1px solid #BFBFBF;
-  border-radius: 5px;
   background: #fff;
   text-decoration: none;
   font-weight: bold;
@@ -495,13 +501,14 @@ p{
   padding: 0 10px 0 10px;
 }
 .comment-avatar{
-  width: 9.5%;
+  width: 60px;
   height: 60px;
   float: left;
 }
 .comment-data{
   float: left;
   width: 590px;
+  padding-bottom: 10px;
 }
 .comment-content{
   word-wrap: break-word;
@@ -519,6 +526,55 @@ p{
   font-size: 12px;
   line-height: 1.2em;
   color: #9E9E9E;
+}
+.comment-button{
+  border-top: 1px solid #ddd;
+  height: 24px;
+  padding: 10px 10px 5px 10px;
+  margin-bottom: 10px;
+}
+a.b-button{
+  background: #fff;
+  cursor: pointer;
+  text-decoration: none;
+  border: none;
+  color: #00a1d6;
+  border: 1px solid #a9a9a9;
+  padding: 2px 10px 2px 10px;
+  font-size: 14px;
+  line-height: 1.5;
+  border-radius: 5px;
+  margin: 0 10px 0 0;
+}
+a.b-button:hover{
+  background: #00a1d6;
+  color: #fff;
+}
+
+/*reply comment area*/
+.reply-comment-item{
+  padding-top: 6px;
+  border-top: 1px solid #2a94ef;
+  margin-top: 18px;
+}
+.reply-comment-data{
+  float: right;
+  width: 528px;
+}
+.reply-comment-content p{
+  font-size: 13px;
+}
+.reply-comment-button{
+  border-top: 1px solid #ddd;
+  padding-top: 5px;
+}
+.reply-comment-button a.b-button{
+  font-size: 12px;
+}
+
+/*write comment*/
+.write-comment input.textbtn{
+  margin: 5px 0 0 0;
 }
 
 
@@ -562,18 +618,15 @@ p{
   line-height: 20px;
   margin-bottom: 5px;
 }
-.member-detail p a{
-  color: #fff;
+.letter-btn{
+  float: right;
+  position: relative;
+  margin: 10px;
+  top: 0;
+  right: 0;
+  overflow: hidden;
+  height: auto;
 }
-/*.member-btn{*/
-  /*float: right;*/
-  /*position: relative;*/
-  /*margin: 10px;*/
-  /*top: 0;*/
-  /*right: 0;*/
-  /*overflow: hidden;*/
-  /*height: auto;*/
-/*}*/
 
 /*to top button*/
 #go-to-top{
@@ -682,10 +735,13 @@ ul.tabs-list li{
   border-bottom: 3px solid #df846c !important;
 }
 .tabs-container{
+  border-top: 1px solid #CCC;
   padding: 10px;
   margin-bottom: 20px;
 
   background: #FFF;
+
+  background-color: #fff;
   clear: left;
   font-size: 14px;
 }
@@ -697,7 +753,10 @@ ul.tabs-list li{
 .tab-content-active{
   display: block;
 }
-
+p.red{
+  color: #E51C23;
+  text-align: center;
+}
 .tset{
   font-size: 14px !important;
   line-height: 20px;
@@ -731,7 +790,6 @@ input.tset-btn{
 input.tset-btn:hover{
   background: #60aef1;
 }
-
 
 /*创作选择*/
 .creation-des{
@@ -771,7 +829,7 @@ input.tset-btn:hover{
   margin: 0 auto;
   padding: 10px;
   background: #ff921a;
-  border: 1px solid #df846c;
+  border: 1px solid #999;
   border-radius: 5px;
 }
 .write-article:hover,.write-novel:hover{
@@ -804,7 +862,8 @@ input.tset-btn:hover{
 }
 
 
-/*编辑器*/
+
+/*文章编辑器*/
 .title-box{
   background: #fff;
   width: 100%;
@@ -824,6 +883,7 @@ input.tset-btn:hover{
   width: 100%;
   padding: 10px;
   border-top: 1px solid #ccc;
+  margin-top: 20px;
   margin-bottom: 20px;
   box-shadow: 2px 2px 5px #ccc;
 }
@@ -841,6 +901,8 @@ input.tset-btn:hover{
   height: auto;
 }
 .tags-list a{
+  cursor: pointer;
+  text-decoration: none;
   display: inline;
   padding: 4px 8px;
   font-size: 12px;
@@ -859,7 +921,7 @@ input.tset-btn:hover{
   text-align: center;
 }
 input.textbtn{
-  color: #333;
+  color: #999;
   text-decoration: none;;
   vertical-align: middle;
   border: none;
@@ -867,6 +929,7 @@ input.textbtn{
   transition: background-color 0.5s ease-in-out;
   cursor: pointer;
   display: inline-block;
+  margin-bottom: 0;
   font-weight: normal;
   text-align: center;
   white-space: normal;
@@ -880,3 +943,4 @@ input.textbtn{
 input.textbtn:hover{
   background: #77d2fb;
 }
+

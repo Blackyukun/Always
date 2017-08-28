@@ -86,15 +86,18 @@
             <article>啊这儿是本网站的公告栏，这里需要有一些东西啊啊啊啊啊啊。啊这儿是本网站的公告栏，这里需要有一些东西啊啊啊啊啊啊。啊这儿是本网站的公告栏，这里需要有一些东西啊啊啊啊啊啊。啊这儿是本网站的公告栏，这里需要有一些东西啊啊啊啊啊啊。啊</article>
           </div>
         </div>
-        <p class="message">
+
           {% with messages = get_flashed_messages() %}
           {% if messages %}
           {% for message in messages %}
-              <strong>{{ message }}</strong>
+              <p class="message">
+                <strong>{{ message }}</strong>
+                <span style="cursor: pointer;" class="close_msg float-right">x</span>
+              </p>
           {% endfor %}
           {% endif %}
           {% endwith %}
-        </p>
+
         {% block content %}
 
         {% endblock %}
@@ -173,6 +176,9 @@
     {% block script %}
     <script src="{{url_for('static',filename='js/jquery-3.2.1.min.js')}}"></script>
     <script src="{{url_for('static',filename='js/always.js')}}"></script>
+    {{ moment.include_moment() }}
+	{{ moment.lang("zh-CN") }}
+    <!--{{ moment.include_jquery() }}-->
     {% endblock %}
   </body>
 </html>

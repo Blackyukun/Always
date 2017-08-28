@@ -48,7 +48,9 @@
   tinymce.init({
     selector:'textarea',
     language:'zh_CN',
-    toolbar: 'undo redo | styleselect | bold italic | link image'
+    plugins: "wordcount emoticons preview fullscreen",
+    menubar: false,
+    toolbar: "undo redo | styleselect | bold italic | link image emoticons preview fullscreen",
 
   });
 </script>
