@@ -12,7 +12,16 @@ main = Blueprint('main', __name__)
 @main.route('/')
 @main.route('/index')
 def index():
-    return render_template('main/index.html')
+    page = request.args.get('page', 1, type=int)
+    pagination = Post.query.order_by(Post.timestamp.desc()).paginate(
+        page, per_page=current_app.config['POSTS_PER_PAGE'],
+        error_out=False
+    )
+    # posts = pagination.items
+    posts = [post for post in pagination.items if post.draft == False]
+    return render_template('main/index.html',
+                           posts=posts,
+                           pagination=pagination)
 
 # member information
 @main.route('/user/<nickname>')
@@ -50,8 +59,7 @@ def creation():
 @login_required
 def write_article():
     form = ArticleForm()
-    if current_user.operation(Permission.WRITE_ARTICLES) and \
-            form.validate_on_submit():
+    if form.validate_on_submit():
         if 'save_draft' in request.form and form.validate():
             post = Post(body=form.body.data,
                         title=form.title.data,
@@ -149,8 +157,10 @@ def post(id):
         error_out=False
     )
     comments = pagination.items
-    return render_template('user/post.html', posts=[post],
+    return render_template('main/article.html', posts=[post],
                            title=post.title, id=post.id,
                            post=post, form=form,
                            comments=comments,
                            pagination=pagination)
+
+

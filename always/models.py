@@ -1,5 +1,5 @@
 from datetime import datetime
-
+from flask import current_app
 from flask_login import UserMixin, AnonymousUserMixin
 from hashlib import md5
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -69,6 +69,59 @@ class User(UserMixin, db.Model):
     role_id = db.Column(db.Integer, db.ForeignKey('roles.id'))
     posts = db.relationship('Post', backref='author', lazy='dynamic')
 
+    # 关注，被关注
+    followed = db.relationship('Follow',
+                               foreign_keys=[Follow.follower_id],
+                               backref=db.backref('follower', lazy='joined'),
+                               lazy='dynamic',
+                               cascade='all, delete-orphan')
+    followers = db.relationship('Follow',
+                                foreign_keys=[Follow.followed_id],
+                                backref=db.backref('followed', lazy='joined'),
+                                lazy='dynamic',
+                                cascade='all, delete-orphan')
+
+    def __init__(self, **kwargs):
+        super(User, self).__init__(**kwargs)
+        if self.role is None:
+            if self.email == current_app.config['ADMINMAIL']:
+                self.role = Role.query.filter_by(permissions=0xff).first()
+            if self.role is None:
+                self.role = Role.query.filter_by(default=True).first()
+
+    # 检查用户是否有指定权限
+    def operation(self, permissions):
+        return self.role is not None and \
+               (self.role.permissions & permissions) == permissions
+
+    def is_administrator(self):
+        return self.operation(Permission.ADMINISTER)
+
+    # 关注
+    def follow(self, user):
+        if not self.is_following(user):
+            follower = Follow(follower=self, followed=user)
+            db.session.add(follower)
+
+    # 取消关注
+    def unfollow(self, user):
+        follower = self.followed.filter_by(followed_id=user.id).first()
+        if follower:
+            db.session.delete(follower)
+
+    # 做了一个followed关系查询，这个查询返回所有当前用户作为关注者的(follower, followed)对
+    def is_following(self, user):
+        return self.followed.filter_by(followed_id=user.id).first() is not None
+
+    def is_followed_by(self, user):
+        return self.followers.filter_by(follower_id=user.id).first() is not None
+
+    # 获取关注者文章
+    @property
+    def followed_posts(self):
+        return Post.query.join(Follow, Follow.followed_id == Post.author_id).filter(
+            Follow.follower_id == self.id)
+
     @property
     def password(self):
         raise AttributeError('password is not a readable attribute')
@@ -80,10 +133,22 @@ class User(UserMixin, db.Model):
     def verify_password(self, password):
         return check_password_hash(self.password_hash, password)
 
+    # Gravatar提供用户头像
+    def gravatar(self, size):
+        return 'http://www.gravatar.com/avatar/' + md5(self.email.encode('utf-8')).hexdigest() + '?d=mm&s=' + str(
+            size)
+
 # 加载用户的回调
 @lm.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
+
+class Follow(db.Model):
+    __tablename__ = 'follows'
+    follower_id = db.Column(db.Integer, db.ForeignKey('users.id'), primary_key=True)
+    followed_id = db.Column(db.Integer, db.ForeignKey('users.id'), primary_key=True)
+    unread = db.Column(db.Boolean, default=True)
+    timestamp = db.Column(db.DateTime, default=datetime.utcnow)
 
 # 文章模型
 class Post(db.Model):
@@ -98,6 +163,8 @@ class Post(db.Model):
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
 
     author_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    like_num = db.relationship('Like', backref='post', lazy='dynamic')
+    comments = db.relationship('Comment', backref='post', lazy='dynamic')
     # tag_name = db.Column(db.String(), db.ForeignKey('post_tags,name'))
 
 # 小说
@@ -113,6 +180,8 @@ class Novel(db.Model):
     author_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     # tag_name = db.Column(db.String(), db.ForeignKey('novel_tags,name'))
     chapters = db.relationship('Chapter', backref='novel', lazy='dynamic')
+    # like_num = db.relationship('Like', backref='post', lazy='dynamic')
+    # comments = db.relationship('Comment', backref='post', lazy='dynamic')
 
 # 小说章节
 class Chapter(db.Model):
